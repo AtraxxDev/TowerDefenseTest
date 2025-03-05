@@ -10,14 +10,43 @@ public class WaveManager : MonoBehaviour
 
     private int currentWaveIndex = 0;
 
+    [SerializeField] private bool waveInProgress = false;
+
+
+
     private void Start()
     {
-        StartCoroutine(StartNextWave());
+        print($" Total de Oleadas de este nivel: {levelWaveData.waves.Length}");
+        StartWave();
     }
 
-    private IEnumerator StartNextWave()
+    private void Update()
     {
-        while (currentWaveIndex < levelWaveData.waves.Length)
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            //waveSpawner.OnEnemyDie();
+        }
+    }
+
+
+    [ContextMenu("NextWave")]
+    public void StartWave()
+    {
+        if (!waveInProgress)
+        {
+            StartCoroutine(NewWave());
+        }
+        else
+        {
+            Debug.Log("No se puede iniciar una nueva oleada, hay una en progreso.");
+        }
+    }
+
+    private IEnumerator NewWave()
+    {
+        waveInProgress = true;
+
+        if (currentWaveIndex < levelWaveData.waves.Length)
         {
             Debug.Log("Iniciando Oleada " + (currentWaveIndex + 1));
 
@@ -26,12 +55,17 @@ public class WaveManager : MonoBehaviour
             // Esperar a que la oleada termine antes de iniciar la siguiente
             yield return new WaitUntil(() => waveSpawner.IsCompletedWave());
 
+            waveInProgress = false;
             Debug.Log("Oleada " + (currentWaveIndex + 1) + " completada.");
             currentWaveIndex++;
 
-            yield return new WaitForSeconds(3f); // Pausa antes de la siguiente oleada
+            //yield return new WaitForSeconds(3f); // Pausa antes de la siguiente oleada
         }
 
-        Debug.Log("¡Todas las oleadas completadas!");
+        else
+        {
+            Debug.Log("Ya no hay mas oleadas en este nivel");
+        }
+
     }
 }

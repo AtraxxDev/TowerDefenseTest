@@ -5,13 +5,9 @@ public class WaveSpawner : MonoBehaviour, IWave
 {
     private int totalEnemiesInWave;
     private int enemiesRemaining;
-    private bool waveInProgress = false;
-    public float spawnDelay;
 
     public IEnumerator StartWave(WaveDataSO data, int waveIndex, EnemySpawner enemySpawner, Transform[] spawnPoints)
     {
-        if (waveInProgress) yield break; // Evita llamadas duplicadas
-        waveInProgress = true;
 
         // Validar índice de la oleada
         if (data == null || waveIndex < 0 || waveIndex >= data.waves.Length)
@@ -20,7 +16,7 @@ public class WaveSpawner : MonoBehaviour, IWave
             yield break;
         }
 
-        Waves currentWave = data.waves[waveIndex]; // Obtener la oleada actual
+        Waves currentWave = data.waves[waveIndex];
         totalEnemiesInWave = 0;
 
         foreach (int count in currentWave.enemyCountsType)
@@ -34,13 +30,21 @@ public class WaveSpawner : MonoBehaviour, IWave
         {
             for (int j = 0; j < currentWave.enemyCountsType[i]; j++)
             {
-                enemySpawner.SpawnEnemy(currentWave.enemiesType[i], spawnPoints[j % spawnPoints.Length]);
-                yield return new WaitForSeconds(currentWave.spawnInterval); // Usar spawnInterval de la oleada
+                // Spawnear enemigo y obtener la referencia
+                Enemy spawnedEnemy = enemySpawner.SpawnEnemy(currentWave.enemiesType[i], spawnPoints[j % spawnPoints.Length]);
+
+                if (spawnedEnemy != null)
+                {
+                    spawnedEnemy.OnDie += OnEnemyDie; // Suscribirse al evento OnDie
+                }
+
+                yield return new WaitForSeconds(currentWave.spawnInterval);
             }
         }
 
-        waveInProgress = false;
     }
+
+
 
     public bool IsCompletedWave()
     {

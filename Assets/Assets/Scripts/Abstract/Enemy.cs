@@ -22,6 +22,7 @@ public abstract class Enemy : MonoBehaviour, IHealth
         agent.speed = enemyData.speed;
         agent.stoppingDistance = enemyData.attackRange;
 
+        target = FindFirstObjectByType<BaseTower>().transform;
 
 
     }

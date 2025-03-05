@@ -934,7 +934,6 @@ MonoBehaviour:
   enemySpawner: {fileID: 2136840302}
   spawnPoints:
   - {fileID: 1858756538}
-  - {fileID: 1676298588}
 --- !u!4 &2136840301
 Transform:
   m_ObjectHideFlags: 0
