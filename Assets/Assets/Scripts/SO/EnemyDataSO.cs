@@ -9,5 +9,4 @@ public class EnemyDataSO : ScriptableObject
     public int damage;
     public float attackCooldown;
     public float attackRange;
-    public float stoppingDistance;
 }

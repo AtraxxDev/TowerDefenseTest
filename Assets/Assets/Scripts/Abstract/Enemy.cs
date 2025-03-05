@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
+using System;
 
 public abstract class Enemy : MonoBehaviour, IHealth
 {
@@ -11,6 +12,8 @@ public abstract class Enemy : MonoBehaviour, IHealth
 
     private float currentHealth;
     private NavMeshAgent agent;
+
+    public event Action OnDie;
 
     public virtual void Start()
     {
@@ -53,8 +56,10 @@ public abstract class Enemy : MonoBehaviour, IHealth
         if (currentHealth <= 0) Die();
     }
 
+    [ContextMenu("Die")]
     public virtual void Die()
     {
+        OnDie?.Invoke();
         Destroy(gameObject);
     }
 
