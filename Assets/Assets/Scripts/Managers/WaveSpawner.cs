@@ -8,14 +8,6 @@ public class WaveSpawner : MonoBehaviour, IWave
 
     public IEnumerator StartWave(WaveDataSO data, int waveIndex, EnemySpawner enemySpawner, Transform[] spawnPoints)
     {
-
-        // Validar índice de la oleada
-        if (data == null || waveIndex < 0 || waveIndex >= data.waves.Length)
-        {
-            Debug.LogError("WaveSpawner: Índice de oleada inválido o WaveDataSO no asignado.");
-            yield break;
-        }
-
         Waves currentWave = data.waves[waveIndex];
         totalEnemiesInWave = 0;
 
@@ -25,7 +17,6 @@ public class WaveSpawner : MonoBehaviour, IWave
         }
         enemiesRemaining = totalEnemiesInWave;
 
-        // Spawn enemigo por enemigo con un delay
         for (int i = 0; i < currentWave.enemiesType.Length; i++)
         {
             for (int j = 0; j < currentWave.enemyCountsType[i]; j++)
