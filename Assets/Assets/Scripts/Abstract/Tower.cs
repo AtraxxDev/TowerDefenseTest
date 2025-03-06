@@ -68,7 +68,7 @@ public abstract class Tower : MonoBehaviour, IAttackable
 
         foreach (var collider in hitColliders)
         {
-            if (collider.TryGetComponent<IDamagable>(out IDamagable enemy))
+            if (collider.TryGetComponent<IDamagable>(out IDamagable enemy) && !collider.GetComponent<BaseTower>())
             {
                 float distance = Vector3.Distance(transform.position, collider.transform.position);
                 if (distance < towerDistance)
@@ -81,6 +81,7 @@ public abstract class Tower : MonoBehaviour, IAttackable
 
         target = enemyTarget;
     }
+
 
     private void RotateTowardsTarget()
     {

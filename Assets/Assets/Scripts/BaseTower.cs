@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class BaseTower : MonoBehaviour, IHealth
+public class BaseTower : MonoBehaviour, IHealth, IDamagable
 {
     [SerializeField] private int maxHealth;
     private int currentHealth;

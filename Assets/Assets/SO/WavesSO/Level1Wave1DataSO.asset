@@ -21,7 +21,8 @@ MonoBehaviour:
     - Spawn_1
   - enemiesType:
     - {fileID: 11400000, guid: 3312bdd1626370c4e983f11ac6a01407, type: 2}
-    enemyCountsType: 0a000000
+    - {fileID: 11400000, guid: cb46404251fb7e145b4f29b6955abba6, type: 2}
+    enemyCountsType: 0700000004000000
     spawnInterval: 0.5
     spawnPointNames:
     - Spawn_1

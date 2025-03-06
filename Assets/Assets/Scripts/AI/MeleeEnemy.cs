@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class FoxEnemy : Enemy
+public class MeleeEnemy : Enemy
 {
     public override void Attack()
     {

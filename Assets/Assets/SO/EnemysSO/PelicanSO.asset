@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 17f9b2cd7b875d34da2055fc2830cc5c, type: 3}
-  m_Name: FoxSO
+  m_Name: PelicanSO
   m_EditorClassIdentifier: 
-  prefab: {fileID: 4507608460630847470, guid: c6426335bf861c1469fec0bbc4c04c20, type: 3}
-  maxHealth: 2
-  speed: 2
-  damage: 1
-  attackCooldown: 1
-  attackRange: 1.5
+  prefab: {fileID: 4507608460630847470, guid: 83c6b5c28897cae41a136328ff8f881c, type: 3}
+  maxHealth: 3
+  speed: 3
+  damage: 3
+  attackCooldown: 2
+  attackRange: 7

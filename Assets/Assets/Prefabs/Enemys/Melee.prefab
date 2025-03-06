@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1679610195752596783}
   - component: {fileID: 2830896245097741164}
   m_Layer: 0
-  m_Name: Fox
+  m_Name: Melee
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
