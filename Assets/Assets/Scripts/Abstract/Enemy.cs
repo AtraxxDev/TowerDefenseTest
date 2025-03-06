@@ -3,7 +3,7 @@ using UnityEngine.AI;
 using System.Collections;
 using System;
 
-public abstract class Enemy : MonoBehaviour, IHealth
+public abstract class Enemy : MonoBehaviour, IHealth, IAttackable,IDamagable
 {
 
     public EnemyDataSO enemyData;
