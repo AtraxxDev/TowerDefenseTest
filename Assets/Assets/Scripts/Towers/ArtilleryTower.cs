@@ -23,7 +23,7 @@ public class ArtilleryTower : Tower
     {
         if (projectilePrefab != null && target != null)
         {
-            GameObject gameObjprojectile = Instantiate(projectilePrefab, pivotProjectile.position, Quaternion.LookRotation(Vector3.forward));
+            GameObject gameObjprojectile = Instantiate(projectilePrefab, pivotProjectile.position,pivotProjectile.rotation);
             Projectile projectile = gameObjprojectile.GetComponent<Projectile>();
             if (projectile != null)
             {

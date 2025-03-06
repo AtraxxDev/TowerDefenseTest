@@ -11,12 +11,13 @@ public class RangedEnemy : Enemy
             isAttacking = true;
 
 
-            GameObject projectileObj = Instantiate(projectilePrefab, shootPoint.position, Quaternion.identity);
+            GameObject projectileObj = Instantiate(projectilePrefab, shootPoint.position,shootPoint.rotation);
             Projectile projectile = projectileObj.GetComponent<Projectile>();
             if (projectile != null)
             {
                 projectile.SetTarget(target,enemyData.damage);
             }
+            Debug.Log("El ranged enemy ha atacado la BaseTower");
 
             StartCoroutine(AttackCooldown());
         }

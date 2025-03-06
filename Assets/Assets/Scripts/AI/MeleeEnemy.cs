@@ -8,17 +8,19 @@ public class MeleeEnemy : Enemy
         {
             isAttacking = true;
 
-            Collider[] hitColliders = Physics.OverlapSphere(transform.position, enemyData.attackRange);
+            Collider[] hitColliders = Physics.OverlapSphere(transform.position, enemyData.attackRange,layerAttack);
 
             foreach (var hitCollider in hitColliders)
             {
                 BaseTower baseTower = hitCollider.GetComponent<BaseTower>();
 
+
                 if (baseTower != null)
                 {
                     baseTower.TakeDamage(enemyData.damage);
-                    Debug.Log("El zorro ha atacado la BaseTower");
+                    Debug.Log("El melee enemy ha atacado la BaseTower");
                 }
+
             }
 
             StartCoroutine(AttackCooldown());

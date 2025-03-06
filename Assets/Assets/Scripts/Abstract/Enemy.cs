@@ -9,6 +9,7 @@ public abstract class Enemy : MonoBehaviour, IHealth, IAttackable,IDamagable
     public EnemyDataSO enemyData;
     public Transform target;
     public bool isAttacking = false;
+    public LayerMask layerAttack;
 
     private float currentHealth;
     private NavMeshAgent agent;
@@ -32,8 +33,9 @@ public abstract class Enemy : MonoBehaviour, IHealth, IAttackable,IDamagable
         if (target != null)
         {
             agent.SetDestination(target.position);
+            transform.LookAt(new Vector3(target.position.x, transform.position.y, target.position.z));
 
-            if (agent.remainingDistance <= agent.stoppingDistance && !isAttacking)
+            if (agent.hasPath && agent.remainingDistance <= agent.stoppingDistance && !isAttacking)
             {
                 Attack();
             }
