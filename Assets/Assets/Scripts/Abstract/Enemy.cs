@@ -53,6 +53,16 @@ public abstract class Enemy : MonoBehaviour, IHealth, IAttackable,IDamagable
         currentHealth = Mathf.Min(currentHealth + amount, enemyData.maxHealth);
     }
 
+    public void ApplyReduceSpeed()
+    {
+        agent.speed = agent.speed / 2;
+    }
+
+    public void RestoreSpeed()
+    {
+        agent.speed = enemyData.speed;
+    }
+
     public void TakeDamage(int amount)
     {
         currentHealth -= amount;
