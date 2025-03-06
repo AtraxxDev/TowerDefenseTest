@@ -52,7 +52,6 @@ public class WaveManager : MonoBehaviour
 
             yield return StartCoroutine(waveSpawner.StartWave(levelWaveData, currentWaveIndex, enemySpawner, spawnPoints));
 
-            // Esperar a que la oleada termine antes de iniciar la siguiente
             yield return new WaitUntil(() => waveSpawner.IsCompletedWave());
 
             waveInProgress = false;

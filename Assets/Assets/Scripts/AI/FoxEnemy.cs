@@ -12,7 +12,6 @@ public class FoxEnemy : Enemy
 
             foreach (var hitCollider in hitColliders)
             {
-                // Comprobamos si el objeto tiene el componente BaseTower
                 BaseTower baseTower = hitCollider.GetComponent<BaseTower>();
 
                 if (baseTower != null)
@@ -30,8 +29,8 @@ public class FoxEnemy : Enemy
     {
         if (enemyData != null)
         {
-            Gizmos.color = Color.yellow;  // Color del Gizmo
-            Gizmos.DrawWireSphere(transform.position, enemyData.attackRange);  // Dibuja un círculo con el radio de ataque
+            Gizmos.color = Color.yellow;  
+            Gizmos.DrawWireSphere(transform.position, enemyData.attackRange); 
         }
 
     }

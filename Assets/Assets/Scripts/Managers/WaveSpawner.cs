@@ -21,12 +21,11 @@ public class WaveSpawner : MonoBehaviour, IWave
         {
             for (int j = 0; j < currentWave.enemyCountsType[i]; j++)
             {
-                // Spawnear enemigo y obtener la referencia
                 Enemy spawnedEnemy = enemySpawner.SpawnEnemy(currentWave.enemiesType[i], spawnPoints[j % spawnPoints.Length]);
 
                 if (spawnedEnemy != null)
                 {
-                    spawnedEnemy.OnDie += OnEnemyDie; // Suscribirse al evento OnDie
+                    spawnedEnemy.OnDie += OnEnemyDie;
                 }
 
                 yield return new WaitForSeconds(currentWave.spawnInterval);

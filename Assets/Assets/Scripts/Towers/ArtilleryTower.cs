@@ -37,11 +37,9 @@ public class ArtilleryTower : Tower
     {
         if (towerData == null) return;
 
-        //  Dibuja el rango de detección (azul)
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, towerData.detectionRange);
 
-        //  Dibuja el rango de ataque (rojo)
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, towerData.attackRange);
     }
