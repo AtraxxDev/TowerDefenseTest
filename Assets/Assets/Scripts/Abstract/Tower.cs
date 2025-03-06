@@ -5,9 +5,12 @@ public abstract class Tower : MonoBehaviour, IAttackable
 {
     public TowerDataSO towerData;
     public Transform target;
+    public Transform pivotProjectile;
 
     private Quaternion initialRotation;
     public bool isAttacking = false;
+
+    private Coroutine attackCoroutine;
 
     private void Start()
     {
@@ -20,37 +23,37 @@ public abstract class Tower : MonoBehaviour, IAttackable
 
         RotateTowardsTarget();
 
-        if (target != null && IsInAttackRange(target) && !isAttacking)
+        if (target != null && IsInAttackRange(target))
         {
-            StartCoroutine(AttackCoroutine());
+            if (attackCoroutine == null)
+            {
+                attackCoroutine = StartCoroutine(DamageLoop());
+            }
         }
         else
         {
-            if (isAttacking)
+            if (attackCoroutine != null)
             {
-                StopCoroutine(AttackCoroutine());
-                isAttacking = false;
+                StopCoroutine(attackCoroutine);
+                attackCoroutine = null;
             }
         }
     }
 
     public abstract void Attack();
 
-    private IEnumerator AttackCoroutine()
+    private IEnumerator DamageLoop()
     {
-        isAttacking = true;
-
-        // Mientras haya un objetivo y esté dentro del rango de ataque, ataca continuamente
         while (target != null && IsInAttackRange(target))
         {
-            Attack(); // Ejecuta el ataque
-            yield return null; 
+            Attack();
+            yield return StartCoroutine(AttackCooldown()); 
         }
 
-        isAttacking = false; // Sale del modo ataque cuando el objetivo se sale del rango o muere
+        attackCoroutine = null; 
     }
 
-    private bool IsInAttackRange(Transform target)
+    public bool IsInAttackRange(Transform target)
     {
         float distance = Vector3.Distance(transform.position, target.position);
         return distance <= towerData.attackRange;
@@ -60,23 +63,23 @@ public abstract class Tower : MonoBehaviour, IAttackable
     {
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, towerData.detectionRange);
 
-        Transform closestTarget = null;
-        float closestDistance = towerData.detectionRange;
+        Transform enemyTarget = null;
+        float towerDistance = towerData.detectionRange;
 
         foreach (var collider in hitColliders)
         {
             if (collider.TryGetComponent<IDamagable>(out IDamagable enemy))
             {
                 float distance = Vector3.Distance(transform.position, collider.transform.position);
-                if (distance < closestDistance)
+                if (distance < towerDistance)
                 {
-                    closestTarget = collider.transform;
-                    closestDistance = distance;
+                    enemyTarget = collider.transform;
+                    towerDistance = distance;
                 }
             }
         }
 
-        target = closestTarget;
+        target = enemyTarget;
     }
 
     private void RotateTowardsTarget()

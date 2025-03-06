@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: FoxSO
   m_EditorClassIdentifier: 
   prefab: {fileID: 4507608460630847470, guid: c6426335bf861c1469fec0bbc4c04c20, type: 3}
-  maxHealth: 3
+  maxHealth: 5
   speed: 3
   damage: 1
-  attackCooldown: 0.1
+  attackCooldown: 1
   attackRange: 1.5
