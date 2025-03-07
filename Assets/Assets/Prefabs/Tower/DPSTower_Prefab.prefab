@@ -136,7 +136,7 @@ Transform:
   m_GameObject: {fileID: 1496129517743558659}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.2805, z: 0}
+  m_LocalPosition: {x: -0.489, y: -0.2805, z: 0.503}
   m_LocalScale: {x: 1, y: 0.439, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -244,7 +244,7 @@ Transform:
   m_GameObject: {fileID: 2078170965928725788}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.4117, z: 0}
+  m_LocalPosition: {x: -0.489, y: 0.4117, z: 0.503}
   m_LocalScale: {x: 0.6, y: 0.86550003, z: 0.6}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -350,7 +350,7 @@ Transform:
   m_GameObject: {fileID: 9052227418998263817}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.536, z: 0.8}
+  m_LocalPosition: {x: -0.489, y: 0.536, z: 1.303}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -369,7 +369,7 @@ GameObject:
   m_Layer: 0
   m_Name: DPSTower_Prefab
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
