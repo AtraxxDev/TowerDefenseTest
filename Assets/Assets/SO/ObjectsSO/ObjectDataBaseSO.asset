@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: ObjectDataBaseSO
   m_EditorClassIdentifier: 
   objectData:
-  - <Name>k__BackingField: DPSTower
+  - <Name>k__BackingField: ArtilleryTower
     <ID>k__BackingField: 0
     <Size>k__BackingField: {x: 1, y: 1}
-    prefab: {fileID: 9105408144669948686, guid: cf0770e0f1d44cf4c9fbf3754a51ea70, type: 3}
-  - <Name>k__BackingField: ArtilleryTower
+    prefab: {fileID: 3916156905691558175, guid: deae269e6c8fc214683df5f37d05b2ea, type: 3}
+  - <Name>k__BackingField: DPSTower
     <ID>k__BackingField: 1
     <Size>k__BackingField: {x: 1, y: 1}
-    prefab: {fileID: 9105408144669948686, guid: f3797bc8ee0a86f468de62e5892c709f, type: 3}
+    prefab: {fileID: 3916156905691558175, guid: 190e4733699382d409c7b5fdb25af1e9, type: 3}
