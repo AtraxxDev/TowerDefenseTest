@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 7087676921031966461}
   - component: {fileID: 3848891371805693818}
   m_Layer: 0
-  m_Name: AoETower
+  m_Name: SlowTower_Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

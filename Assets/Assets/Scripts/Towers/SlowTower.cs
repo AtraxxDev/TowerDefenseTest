@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AoETower : Tower
+public class SlowTower : Tower
 {
     private HashSet<Enemy> affectedEnemies = new HashSet<Enemy>();
 

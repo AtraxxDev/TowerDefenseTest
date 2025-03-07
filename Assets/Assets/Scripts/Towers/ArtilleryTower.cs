@@ -3,35 +3,51 @@ using System.Collections;
 
 public class ArtilleryTower : Tower
 {
+    [SerializeField] private Transform pivotProjectile;
     [SerializeField] private GameObject projectilePrefab;
+    [SerializeField] private int shotsBeforeReload = 5;
+    [SerializeField] private float reloadTime = 2f; 
+
+    private Coroutine attackCoroutine;
 
     public override void Attack()
     {
-        ShootProjectile();
+        if (attackCoroutine == null)
+        {
+            attackCoroutine = StartCoroutine(FireProjectiles());
+        }
     }
 
     private IEnumerator FireProjectiles()
     {
         while (target != null && IsInAttackRange(target))
         {
-            ShootProjectile();
-            yield return null;
+            for (int i = 0; i < shotsBeforeReload; i++)
+            {
+                ShootProjectile();
+                yield return StartCoroutine(AttackCooldown());
+            }
+
+            Debug.Log("Recargando...");
+            yield return new WaitForSeconds(reloadTime); 
         }
+
+        attackCoroutine = null; 
     }
 
     private void ShootProjectile()
     {
         if (projectilePrefab != null && target != null)
         {
-            GameObject gameObjprojectile = Instantiate(projectilePrefab, pivotProjectile.position,pivotProjectile.rotation);
-            Projectile projectile = gameObjprojectile.GetComponent<Projectile>();
+            GameObject gameObjProjectile = Instantiate(projectilePrefab, pivotProjectile.position, pivotProjectile.rotation);
+            Projectile projectile = gameObjProjectile.GetComponent<Projectile>();
+
             if (projectile != null)
             {
                 projectile.SetTarget(target, towerData.damage);
             }
         }
     }
-
 
     private void OnDrawGizmos()
     {

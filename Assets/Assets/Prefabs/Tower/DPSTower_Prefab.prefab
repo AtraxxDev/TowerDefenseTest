@@ -365,9 +365,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4042075146478231377}
-  - component: {fileID: 5302619405144628637}
+  - component: {fileID: 5355974197409793765}
   m_Layer: 0
-  m_Name: TridentTower
+  m_Name: DPSTower_Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -391,7 +391,7 @@ Transform:
   - {fileID: 1558073432772309726}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5302619405144628637
+--- !u!114 &5355974197409793765
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -400,11 +400,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 9105408144669948686}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1b501a7d59ee004f940db9e3f2baacb, type: 3}
+  m_Script: {fileID: 11500000, guid: af5c0e912e6356f449080c63c2a0df87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   towerData: {fileID: 11400000, guid: b3015f3cb2b881948b031afabf1ec103, type: 2}
   target: {fileID: 0}
-  pivotProjectile: {fileID: 1558073432772309726}
   isAttacking: 0
   projectilePrefab: {fileID: 2687634690975818767, guid: b0db12c79d90abf4fa5e1c8cd2cfc0b7, type: 3}
+  pivotProjectile: {fileID: 1558073432772309726}

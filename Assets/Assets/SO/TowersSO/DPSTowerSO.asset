@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: da75cb709c2586c4db69e06c79fe5ce2, type: 3}
-  m_Name: EggMinigunTowerSO
+  m_Name: DPSTowerSO
   m_EditorClassIdentifier: 
   prefab: {fileID: 9105408144669948686, guid: cf0770e0f1d44cf4c9fbf3754a51ea70, type: 3}
   damage: 1
-  attackCooldown: 0.2
-  attackRange: 8
-  detectionRange: 10
+  attackCooldown: 1
+  attackRange: 4
+  detectionRange: 5

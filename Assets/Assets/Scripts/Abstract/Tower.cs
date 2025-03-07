@@ -5,7 +5,6 @@ public abstract class Tower : MonoBehaviour, IAttackable
 {
     public TowerDataSO towerData;
     public Transform target;
-    public Transform pivotProjectile;
 
     private Quaternion initialRotation;
     public bool isAttacking = false;
