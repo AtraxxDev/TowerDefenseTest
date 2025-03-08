@@ -2512,6 +2512,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 1869593728}
     m_Modifications:
     - target: {fileID: 452362481161760226, guid: 62aade7a13f241a45b3b613e83363ce3, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 452362481161760226, guid: 62aade7a13f241a45b3b613e83363ce3, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 452362481161760226, guid: 62aade7a13f241a45b3b613e83363ce3, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 452362481161760226, guid: 62aade7a13f241a45b3b613e83363ce3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.009
       objectReference: {fileID: 0}
@@ -2555,6 +2567,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: 'CourseIndicatorParent '
       objectReference: {fileID: 0}
+    - target: {fileID: 4321290502009722672, guid: 62aade7a13f241a45b3b613e83363ce3, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4321290502009722672, guid: 62aade7a13f241a45b3b613e83363ce3, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4321290502009722672, guid: 62aade7a13f241a45b3b613e83363ce3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.70710784
+      objectReference: {fileID: 0}
+    - target: {fileID: 4321290502009722672, guid: 62aade7a13f241a45b3b613e83363ce3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.70710576
+      objectReference: {fileID: 0}
+    - target: {fileID: 4321290502009722672, guid: 62aade7a13f241a45b3b613e83363ce3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4767204562000477886, guid: 62aade7a13f241a45b3b613e83363ce3, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
