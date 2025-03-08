@@ -51,25 +51,36 @@ public class PreviewColorSystem : MonoBehaviour
         }
     }
 
-    public void StopShowingPreview()
-    {
-        cellIndicator.SetActive(false);
-        Destroy(previewObject);
-    }
 
     public void UpdatePosition(Vector3 position , bool validity)
     {
-        MovePreview(position);
+        if (previewObject != null)
+        {
+            MovePreview(position);
+            ApplyFeebackToPreview(validity);
+        }
         MoveCursor(position);
-        ApplyFeeback(validity);
+        ApplyFeebackToCursor(validity);
+    }
+    public void StopShowingPreview()
+    {
+        cellIndicator.SetActive(false);
+        if (previewObject != null )
+            Destroy(previewObject);
     }
 
-    private void ApplyFeeback(bool validity)
+    private void ApplyFeebackToPreview(bool validity)
+    {
+        Color c = validity ? Color.white : Color.red;
+        c.a = 0.5f;
+        previewMaterialInstance.color = c;
+    }
+
+    private void ApplyFeebackToCursor(bool validity)
     {
         Color c = validity ? Color.white : Color.red;
         c.a = 0.5f;
         cellIndicatorRenderer.material.color = c;
-        previewMaterialInstance.color = c;
     }
 
     private void MoveCursor(Vector3 position)
@@ -80,5 +91,12 @@ public class PreviewColorSystem : MonoBehaviour
     private void MovePreview(Vector3 position)
     {
         previewObject.transform.position = new Vector3(position.x, position.y + previewOffsetY, position.z);
+    }
+
+    public void StartShowingRemovePreview()
+    {
+        cellIndicator.SetActive(true);
+        PrepareCursor(Vector2Int.one);
+        ApplyFeebackToCursor(false);
     }
 }
