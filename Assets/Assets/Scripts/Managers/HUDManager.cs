@@ -29,9 +29,11 @@ public class HUDManager : MonoBehaviour
         {
             case GamePhase.Planning:
                 panels[0].SetActive(true);  // Activa el HUD del Building en la fase de planificación
+                panels[3].SetActive(false);
                 break;
             case GamePhase.Wave:
                 panels[0].SetActive(false);  // Activa el HUD del Building en la fase de planificación
+                panels[3].SetActive(true);
                 break;
             case GamePhase.GameOver:
                 panels[1].SetActive(true);  

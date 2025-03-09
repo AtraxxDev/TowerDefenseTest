@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
 using System;
+using UnityEngine.UI;
 
 public abstract class Enemy : MonoBehaviour, IHealth, IAttackable,IDamagable
 {
@@ -15,6 +16,8 @@ public abstract class Enemy : MonoBehaviour, IHealth, IAttackable,IDamagable
     private NavMeshAgent agent;
 
     public event Action OnDie;
+
+    public Image healthBar;
 
     public virtual void Start()
     {
@@ -65,7 +68,20 @@ public abstract class Enemy : MonoBehaviour, IHealth, IAttackable,IDamagable
 
     public void TakeDamage(int amount)
     {
+        // Calcula el porcentaje de daño con respecto a la vida máxima
+        float damagePercentage = (float)amount / enemyData.maxHealth;
+
+        // Reduce la vida directamente usando el valor del daño recibido
         currentHealth -= amount;
+
+        // Actualiza la barra de vida proporcionalmente
+        if (healthBar != null)
+        {
+            healthBar.fillAmount = currentHealth / enemyData.maxHealth;
+        }
+
+
+
         if (currentHealth <= 0) Die();
     }
 

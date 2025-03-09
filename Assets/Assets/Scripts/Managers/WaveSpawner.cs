@@ -6,6 +6,23 @@ public class WaveSpawner : MonoBehaviour, IWave
     private int totalEnemiesInWave;
     public int enemiesRemaining;
 
+    private void Start()
+    {
+        TankEnemy.OnEnemySpawned += IncrementEnemiesRemaining;
+    }
+
+    private void OnDisable()
+    {
+        TankEnemy.OnEnemySpawned -= IncrementEnemiesRemaining;
+    }
+
+    private void IncrementEnemiesRemaining()
+    {
+        enemiesRemaining++;
+        Debug.Log("Enemigo adicional generado. Enemigos restantes: " + enemiesRemaining);
+    }
+
+
     public IEnumerator StartWave(WaveDataSO data, int waveIndex, EnemySpawner enemySpawner, Transform[] spawnPoints)
     {
         Waves currentWave = data.waves[waveIndex];

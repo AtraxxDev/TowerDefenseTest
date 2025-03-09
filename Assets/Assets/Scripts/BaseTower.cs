@@ -1,10 +1,12 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BaseTower : MonoBehaviour, IHealth, IDamagable
 {
     [SerializeField] private int maxHealth;
     private int currentHealth;
+    public Image healthBar;
 
     private void Start()
     {
@@ -15,10 +17,23 @@ public class BaseTower : MonoBehaviour, IHealth, IDamagable
 
     public void TakeDamage(int amount)
     {
+        float damagePercentage = (float)amount / maxHealth;
+
         currentHealth -= amount;
-        if (currentHealth <= 0) Die();
-        Debug.Log($"He recibido: {amount} de daño mi vida actual es de_ {currentHealth}");
+
+        if (healthBar != null)
+        {
+            healthBar.fillAmount = (float)currentHealth / maxHealth;
+        }
+
+        Debug.Log($"Salud actual: {currentHealth}");
+
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
     }
+
 
     public void Die()
     {
