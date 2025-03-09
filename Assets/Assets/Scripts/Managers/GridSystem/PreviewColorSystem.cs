@@ -99,4 +99,14 @@ public class PreviewColorSystem : MonoBehaviour
         PrepareCursor(Vector2Int.one);
         ApplyFeebackToCursor(false);
     }
+
+    public void UpdateRotation(Quaternion rotation)
+    {
+        if (previewObject != null && previewObject.transform.childCount > 0)
+        {
+            Transform child = previewObject.transform.GetChild(0); // Obtener el primer hijo
+            child.rotation = rotation; // Rotar solo el hijo
+        }
+    }
+
 }

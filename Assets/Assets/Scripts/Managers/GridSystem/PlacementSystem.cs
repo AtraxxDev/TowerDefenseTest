@@ -25,6 +25,8 @@ public class PlacementSystem : MonoBehaviour
 
     IBuildingState buildingState;
 
+    [SerializeField] private SoundFeedback soundFeedback;
+
 
     private void Start()
     {
@@ -37,9 +39,14 @@ public class PlacementSystem : MonoBehaviour
     {
         StopPlacement();
         gridVisualization.SetActive( true );
-        buildingState = new PlacementState(ID, grid, preview, dataBase, floorData, furnitureData, objectPlacer);
+        buildingState = new PlacementState(ID, grid, preview, dataBase, floorData, furnitureData, objectPlacer,soundFeedback);
         inputManager.OnClicked += PlaceStructure;
         inputManager.OnExit += StopPlacement;
+        if (buildingState is PlacementState placementState)
+        {
+            inputManager.OnRotate += placementState.RotateObject;
+        }
+
     }
 
     public void StartRemoving()
@@ -80,6 +87,12 @@ public class PlacementSystem : MonoBehaviour
         buildingState.EndState();
         inputManager.OnClicked -= PlaceStructure;
         inputManager.OnExit -= StopPlacement;
+
+        if (buildingState is PlacementState placementState)
+        {
+            inputManager.OnRotate -= placementState.RotateObject;
+        }
+
         lastDetectedPosition = Vector3Int.zero;
         buildingState = null;
 

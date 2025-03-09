@@ -12,6 +12,7 @@ public class InputManager : MonoBehaviour
 
     public event Action OnClicked;
     public event Action OnExit;
+    public event Action OnRotate;
 
     private void Update()
     {
@@ -19,6 +20,8 @@ public class InputManager : MonoBehaviour
             OnClicked?.Invoke();
         if (Input.GetKeyDown(KeyCode.Escape))
             OnExit?.Invoke();
+        if (Input.GetKeyDown(KeyCode.R))
+            OnRotate?.Invoke();
     }
 
     public bool IsPointerIsOverUI()
