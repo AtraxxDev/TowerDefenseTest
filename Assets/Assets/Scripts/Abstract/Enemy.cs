@@ -68,13 +68,10 @@ public abstract class Enemy : MonoBehaviour, IHealth, IAttackable,IDamagable
 
     public void TakeDamage(int amount)
     {
-        // Calcula el porcentaje de daño con respecto a la vida máxima
         float damagePercentage = (float)amount / enemyData.maxHealth;
 
-        // Reduce la vida directamente usando el valor del daño recibido
         currentHealth -= amount;
 
-        // Actualiza la barra de vida proporcionalmente
         if (healthBar != null)
         {
             healthBar.fillAmount = currentHealth / enemyData.maxHealth;

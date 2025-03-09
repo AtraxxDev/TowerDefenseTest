@@ -30,7 +30,7 @@ public class MeleeEnemy : Enemy
     public override void Die()
     {
         CoinManager.Instance.AddCoins(25);
-        base.Die(); // Llama la lógica de la clase padre para destruir el objeto
+        base.Die(); 
     }
 
     private void OnDrawGizmos()
