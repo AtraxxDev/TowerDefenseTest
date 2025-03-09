@@ -104,8 +104,8 @@ public class PreviewColorSystem : MonoBehaviour
     {
         if (previewObject != null && previewObject.transform.childCount > 0)
         {
-            Transform child = previewObject.transform.GetChild(0); // Obtener el primer hijo
-            child.rotation = rotation; // Rotar solo el hijo
+            Transform child = previewObject.transform.GetChild(0); 
+            child.rotation = rotation; 
         }
     }
 

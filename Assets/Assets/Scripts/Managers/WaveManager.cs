@@ -8,7 +8,7 @@ public class WaveManager : MonoBehaviour
     public EnemySpawner enemySpawner;
     public Transform[] spawnPoints;
 
-    private int currentWaveIndex = 0;
+    public int currentWaveIndex = 0;
 
     [SerializeField] private bool waveInProgress = false;
 
@@ -17,21 +17,14 @@ public class WaveManager : MonoBehaviour
     private void Start()
     {
         print($" Total de Oleadas de este nivel: {levelWaveData.waves.Length}");
-        StartWave();
-    }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            //waveSpawner.OnEnemyDie();
-        }
     }
 
 
     [ContextMenu("NextWave")]
     public void StartWave()
     {
+        GameManager.Instance.StartWave();
         if (!waveInProgress)
         {
             StartCoroutine(NewWave());
@@ -57,14 +50,17 @@ public class WaveManager : MonoBehaviour
             waveInProgress = false;
             Debug.Log("Oleada " + (currentWaveIndex + 1) + " completada.");
             currentWaveIndex++;
+            GameManager.Instance.EndWave();
+
+            if (waveSpawner.IsCompletedWave() && currentWaveIndex >= levelWaveData.waves.Length)
+            {
+                GameManager.Instance.IsWinning();
+
+            }
 
             //yield return new WaitForSeconds(3f); // Pausa antes de la siguiente oleada
         }
 
-        else
-        {
-            Debug.Log("Ya no hay mas oleadas en este nivel");
-        }
 
     }
 }

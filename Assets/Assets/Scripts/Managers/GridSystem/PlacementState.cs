@@ -8,19 +8,19 @@ public class PlacementState : IBuildingState
     Grid grid;
     PreviewColorSystem previewColorSystem;
     ObjectDataBaseSO dataBase;
-    GridData floorData;
-    GridData furnitureData;
+    GridData firstCategoryData;
+    GridData secondCategoryData;
     ObjectPlacer objectPlacer;
     SoundFeedback soundFeedback;
 
-    public PlacementState(int iD, Grid grid, PreviewColorSystem previewColorSystem, ObjectDataBaseSO dataBase, GridData floorData, GridData furnitureData, ObjectPlacer objectPlacer, SoundFeedback soundFeedback)
+    public PlacementState(int iD, Grid grid, PreviewColorSystem previewColorSystem, ObjectDataBaseSO dataBase, GridData firstCategoryData, GridData secondCategoryData, ObjectPlacer objectPlacer, SoundFeedback soundFeedback)
     {
         ID = iD;
         this.grid = grid;
         this.previewColorSystem = previewColorSystem;
         this.dataBase = dataBase;
-        this.floorData = floorData;
-        this.furnitureData = furnitureData;
+        this.firstCategoryData = firstCategoryData;
+        this.secondCategoryData = secondCategoryData;
         this.objectPlacer = objectPlacer;
         this.soundFeedback = soundFeedback;
 
@@ -42,6 +42,21 @@ public class PlacementState : IBuildingState
 
     public void OnAction(Vector3Int gridPosition)
     {
+        int cost = dataBase.objectData[selectedObjectIndex].Price;
+
+        if (!CoinManager.Instance.CanAfford(cost))
+        {
+            soundFeedback.PlaySFXSound(SFXType.wrongPlacement);
+            Debug.Log($"Do you not have Money. his price to this object is {dataBase.objectData[selectedObjectIndex].Price}");
+            return;
+        }
+        else
+        {
+            Debug.Log($"Thanks for buying");
+
+        }
+
+
         bool placementValidity = CheckPlacementValidity(gridPosition, selectedObjectIndex);
 
         if (placementValidity == false)
@@ -49,14 +64,17 @@ public class PlacementState : IBuildingState
             soundFeedback.PlaySFXSound(SFXType.wrongPlacement);
             return;
         }
+
+
         soundFeedback.PlaySFXSound(SFXType.Place);
+        CoinManager.Instance.SpendCoins(cost);
 
         int index = objectPlacer.PlaceObject(dataBase.objectData[selectedObjectIndex].prefab, grid.CellToWorld(gridPosition),currentRotation);
 
 
         GridData selectedData = dataBase.objectData[selectedObjectIndex].ID == 0 ?
-            floorData :
-            furnitureData;
+            firstCategoryData :
+            secondCategoryData;
         selectedData.AddObjectAt(gridPosition, dataBase.objectData[selectedObjectIndex].Size, dataBase.objectData[selectedObjectIndex].ID, index);
 
 
@@ -66,7 +84,7 @@ public class PlacementState : IBuildingState
 
     private bool CheckPlacementValidity(Vector3Int gridPosition, int selectedObjectIndex)
     {
-        GridData selectedData = dataBase.objectData[selectedObjectIndex].ID == 0 ? floorData : furnitureData;
+        GridData selectedData = dataBase.objectData[selectedObjectIndex].ID == 0 ? firstCategoryData : secondCategoryData;
 
         return selectedData.CanPlaceObjectAt(gridPosition, dataBase.objectData[selectedObjectIndex].Size);
     }
@@ -79,7 +97,7 @@ public class PlacementState : IBuildingState
     }
     public void RotateObject()
     {
-        currentRotation *= Quaternion.Euler(0f, 90f, 0f); // Rota 90° en el eje Y
-        previewColorSystem.UpdateRotation(currentRotation); // Actualiza la vista previa
+        currentRotation *= Quaternion.Euler(0f, 90f, 0f); 
+        previewColorSystem.UpdateRotation(currentRotation); 
     }
 }

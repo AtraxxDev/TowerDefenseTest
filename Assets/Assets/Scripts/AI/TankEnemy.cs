@@ -31,6 +31,7 @@ public class TankEnemy : Enemy
 
     public override void Die()
     {
+        CoinManager.Instance.AddCoins(20);
         SpawnEnemiesOnDeath();
         base.Die(); // Llama la lógica de la clase padre para destruir el objeto
     }

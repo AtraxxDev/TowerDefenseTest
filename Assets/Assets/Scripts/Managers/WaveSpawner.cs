@@ -4,7 +4,7 @@ using UnityEngine;
 public class WaveSpawner : MonoBehaviour, IWave
 {
     private int totalEnemiesInWave;
-    private int enemiesRemaining;
+    public int enemiesRemaining;
 
     public IEnumerator StartWave(WaveDataSO data, int waveIndex, EnemySpawner enemySpawner, Transform[] spawnPoints)
     {

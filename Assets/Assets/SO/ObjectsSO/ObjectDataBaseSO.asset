@@ -15,9 +15,26 @@ MonoBehaviour:
   objectData:
   - <Name>k__BackingField: ArtilleryTower
     <ID>k__BackingField: 0
+    <Price>k__BackingField: 100
     <Size>k__BackingField: {x: 1, y: 1}
     prefab: {fileID: 3916156905691558175, guid: deae269e6c8fc214683df5f37d05b2ea, type: 3}
   - <Name>k__BackingField: DPSTower
     <ID>k__BackingField: 1
+    <Price>k__BackingField: 50
     <Size>k__BackingField: {x: 1, y: 1}
     prefab: {fileID: 3916156905691558175, guid: 190e4733699382d409c7b5fdb25af1e9, type: 3}
+  - <Name>k__BackingField: ArtilleryTower
+    <ID>k__BackingField: 2
+    <Price>k__BackingField: 150
+    <Size>k__BackingField: {x: 1, y: 1}
+    prefab: {fileID: 3916156905691558175, guid: deae269e6c8fc214683df5f37d05b2ea, type: 3}
+  - <Name>k__BackingField: AoE Tower
+    <ID>k__BackingField: 3
+    <Price>k__BackingField: 200
+    <Size>k__BackingField: {x: 1, y: 1}
+    prefab: {fileID: 2865322316902104089, guid: 5dc99b2c799f79e4a8f57975b6394620, type: 3}
+  - <Name>k__BackingField: Explosive Tower
+    <ID>k__BackingField: 4
+    <Price>k__BackingField: 50
+    <Size>k__BackingField: {x: 2, y: 2}
+    prefab: {fileID: 7200925505496115109, guid: abaed82167c9bdf4fb8dcff56d39b572, type: 3}

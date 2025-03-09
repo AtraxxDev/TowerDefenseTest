@@ -15,15 +15,9 @@ MonoBehaviour:
   waves:
   - enemiesType:
     - {fileID: 11400000, guid: 3312bdd1626370c4e983f11ac6a01407, type: 2}
-    enemyCountsType: 05000000
-    spawnInterval: 0.5
-    spawnPointNames:
-    - Spawn_1
-  - enemiesType:
-    - {fileID: 11400000, guid: 3312bdd1626370c4e983f11ac6a01407, type: 2}
     - {fileID: 11400000, guid: cb46404251fb7e145b4f29b6955abba6, type: 2}
-    enemyCountsType: 0700000004000000
+    - {fileID: 11400000, guid: c0ea524709dd7f843a517332a3564f8a, type: 2}
+    enemyCountsType: 050000000400000003000000
     spawnInterval: 0.5
     spawnPointNames:
     - Spawn_1
-    - Spawn_2

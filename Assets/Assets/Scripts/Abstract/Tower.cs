@@ -11,6 +11,9 @@ public abstract class Tower : MonoBehaviour, IAttackable
 
     private Coroutine attackCoroutine;
 
+    private bool isInPreview = false;  // Variable para saber si estamos en vista previa
+
+
     private void Start()
     {
         initialRotation = transform.rotation;
@@ -86,14 +89,18 @@ public abstract class Tower : MonoBehaviour, IAttackable
     {
         if (target != null)
         {
-            transform.LookAt(new Vector3(target.position.x, transform.position.y, target.position.z));
+            Transform child = transform.GetChild(0);  
 
+            child.LookAt(new Vector3(target.position.x, child.position.y, target.position.z));
         }
         else
         {
-            transform.rotation = Quaternion.Slerp(transform.rotation, initialRotation, Time.deltaTime * 2f);
+           
+            /*Transform child = transform.GetChild(0);  
+            child.rotation = Quaternion.Slerp(child.rotation, initialRotation, Time.deltaTime * 2f);*/
         }
     }
+
 
     public IEnumerator AttackCooldown()
     {

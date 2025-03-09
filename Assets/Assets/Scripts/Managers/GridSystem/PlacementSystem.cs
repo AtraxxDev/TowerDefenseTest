@@ -16,8 +16,8 @@ public class PlacementSystem : MonoBehaviour
 
     [SerializeField] private PreviewColorSystem preview;
 
-    private GridData floorData;
-    private GridData furnitureData;
+    private GridData firstCategoryData;
+    private GridData secondCatecoryData;
 
     private Vector3Int lastDetectedPosition = Vector3Int.zero;
 
@@ -31,15 +31,20 @@ public class PlacementSystem : MonoBehaviour
     private void Start()
     {
         StopPlacement();
-        floorData = new();
-        furnitureData = new();
+        firstCategoryData = new();
+        secondCatecoryData = new();
     }
 
     public void StartPlacement(int ID)
     {
+        if (GameManager.Instance.currentPhase == GamePhase.Wave)
+        {
+            return;
+        }
+
         StopPlacement();
         gridVisualization.SetActive( true );
-        buildingState = new PlacementState(ID, grid, preview, dataBase, floorData, furnitureData, objectPlacer,soundFeedback);
+        buildingState = new PlacementState(ID, grid, preview, dataBase, firstCategoryData, secondCatecoryData, objectPlacer,soundFeedback);
         inputManager.OnClicked += PlaceStructure;
         inputManager.OnExit += StopPlacement;
         if (buildingState is PlacementState placementState)
@@ -51,15 +56,26 @@ public class PlacementSystem : MonoBehaviour
 
     public void StartRemoving()
     {
+        if (GameManager.Instance.currentPhase == GamePhase.Wave)
+        {
+            return;
+        }
+
+
         StopPlacement();
         gridVisualization.SetActive(true);
-        buildingState = new RemovingState(grid, preview, floorData, furnitureData, objectPlacer);
+        buildingState = new RemovingState(grid, preview, firstCategoryData, secondCatecoryData, objectPlacer);
         inputManager.OnClicked += PlaceStructure;
         inputManager.OnExit += StopPlacement;
     }
 
     private void PlaceStructure()
     {
+        if (GameManager.Instance.currentPhase == GamePhase.Wave)
+        {
+            return;
+        }
+
         if (inputManager.IsPointerIsOverUI())
         {
             return;
@@ -74,16 +90,16 @@ public class PlacementSystem : MonoBehaviour
 
     //private bool CheckPlacementValidity(Vector3Int gridPosition, int selectedObjectIndex)
     //{
-    //   GridData selectedData = dataBase.objectData[selectedObjectIndex].ID == 0 ? floorData : furnitureData;
+    //   GridData selectedData = dataBase.objectData[selectedObjectIndex].ID == 0 ? firstCategoryData : secondCatecoryData;
 
     //    return selectedData.CanPlaceObjectAt(gridPosition, dataBase.objectData[selectedObjectIndex].Size);
     //}
 
     private void StopPlacement()
     {
+        gridVisualization.SetActive(false);
         if (buildingState == null)
             return;
-        gridVisualization.SetActive(false);
         buildingState.EndState();
         inputManager.OnClicked -= PlaceStructure;
         inputManager.OnExit -= StopPlacement;
@@ -100,7 +116,7 @@ public class PlacementSystem : MonoBehaviour
 
     private void Update()
     {
-        if (buildingState == null)
+        if (buildingState == null || GameManager.Instance.currentPhase == GamePhase.Wave)
             return;
         Vector3 mousePosition = inputManager.GetSelectedMapPosition();
         Vector3Int gridPosition = grid.WorldToCell(mousePosition);

@@ -6,16 +6,16 @@ public class RemovingState : IBuildingState
     private int gameObjectIndex = -1;
     Grid grid;
     PreviewColorSystem previewColorSystem;
-    GridData floorData;
-    GridData furnitureData;
+    GridData firstCategoryData;
+    GridData secondCategoryData;
     ObjectPlacer objectPlacer;
 
-    public RemovingState(Grid grid, PreviewColorSystem previewColorSystem, GridData floorData, GridData furnitureData, ObjectPlacer objectPlacer)
+    public RemovingState(Grid grid, PreviewColorSystem previewColorSystem, GridData firstCategoryData, GridData secondCategoryData, ObjectPlacer objectPlacer)
     {
         this.grid = grid;
         this.previewColorSystem = previewColorSystem;
-        this.floorData = floorData;
-        this.furnitureData = furnitureData;
+        this.firstCategoryData = firstCategoryData;
+        this.secondCategoryData = secondCategoryData;
         this.objectPlacer = objectPlacer;
 
         previewColorSystem.StartShowingRemovePreview();
@@ -29,13 +29,13 @@ public class RemovingState : IBuildingState
     public void OnAction(Vector3Int gridPosition)
     {
         GridData selectedData = null;
-        if (furnitureData.CanPlaceObjectAt(gridPosition, Vector2Int.one) == false)
+        if (secondCategoryData.CanPlaceObjectAt(gridPosition, Vector2Int.one) == false)
         {
-            selectedData = furnitureData;
+            selectedData = secondCategoryData;
         }
-        else if (floorData.CanPlaceObjectAt(gridPosition, Vector2Int.one) == false)
+        else if (firstCategoryData.CanPlaceObjectAt(gridPosition, Vector2Int.one) == false)
         {
-            selectedData = floorData;
+            selectedData = firstCategoryData;
 
         }
 
@@ -57,7 +57,7 @@ public class RemovingState : IBuildingState
 
     private bool CheckIsSelectionIsValid(Vector3Int gridPosition)
     {
-        return !(furnitureData.CanPlaceObjectAt(gridPosition, Vector2Int.one) && floorData.CanPlaceObjectAt(gridPosition, Vector2Int.one));
+        return !(secondCategoryData.CanPlaceObjectAt(gridPosition, Vector2Int.one) && firstCategoryData.CanPlaceObjectAt(gridPosition, Vector2Int.one));
     }
 
     public void UpdateState(Vector3Int gridPosition)

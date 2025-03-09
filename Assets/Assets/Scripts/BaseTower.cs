@@ -6,8 +6,6 @@ public class BaseTower : MonoBehaviour, IHealth, IDamagable
     [SerializeField] private int maxHealth;
     private int currentHealth;
 
-    public event Action OnBaseDestroy;
-
     private void Start()
     {
         currentHealth = maxHealth;
@@ -25,7 +23,7 @@ public class BaseTower : MonoBehaviour, IHealth, IDamagable
     public void Die()
     {
         Debug.Log("La base ha sido destruida");
-        OnBaseDestroy?.Invoke();
+        GameManager.Instance.IsGameOver();
         Destroy(gameObject);
     }
 
